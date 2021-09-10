@@ -1,0 +1,60 @@
+Por grupo:
+
+OBJETIVO: crear nuestro primer pull request
+
+Normalmente, se establece esta configuración LA PRIMERA VEZ
+
+1. Crear el repositorio oficial -> Dueño del repositorio
+2. El dueño copia el enlace y lo comparte con sus compañeros.
+3. Cada compañero, exceptuando al dueño, va a crear un "fork".
+
+4. Cada uno, incluyendo el dueño, va a crear un "clone"
+	git clone <url_original> -> TODOS
+
+5. Acceder al clon a través de la consola.
+
+6. Los compañeros (sin el dueño) crearán un enlace para sus copias personales.
+	git remote add fork <url_copia>	
+
+NOTA: el <url_copia> corresponde a la copia se crea mediante el botón "fork" y que lo encuentran en sus repositorios personales.
+
+7. (Opcional) Visualizar las conexiones:
+	git remote -v
+
+8. (Opcional) Visualizar las ramas:
+	git branch
+
+9. De ser necesario (primera vez), creamos rama personal de trabajo:
+	git branch <nom_subproyecto>
+
+10. Cambiar a la rama de trabajo (color verde):
+	git checkout <nom_subproyecto>
+
+11. Verificar rama de trabajo -> Opción 8.
+
+12. una vez TERMINADO el avance: subimos contenido a nuestra rama personal
+				 dentro de la copia
+
+	git add .
+	git commit -m "comentario"
+	git push fork <nom_subproyecto>
+
+13. En GitHub, creamos el "pull request".
+
+
+
+
+
+URL: conexión
+
+origin -> repostorio oficial
+
+fork   -> copia de trabajo individual
+
+RAMAS:
+
+master -> Se maneja tanto en el oficial como en las copias. Hace alusión 
+	  al proyecto original y a las versiones definitivas del mismo.
+
+ramas-secundarias -> desarrollos individuales. Pueden tomar cualquier 
+		     nombre.

@@ -1,0 +1,47 @@
+Clase 2 : Que se desarollará por cada Sprint (por semana)
+Ecommerce - COMERCIO DE TECNOLOGÍA: 
+	- Usuarios:	(Sprint 1)
+		- Administrador (H1)
+		- Cliente	(H2)
+		- Proveedor	(H3)
+		- Nombre proveedor (Bug)
+		- Foto (Tarea - task)
+	- Productos: 	(Sprint 2)
+		- Grupos (Clasifica según corresponda. Ej: Mujer, Hombre, niños, ...)
+		_ Subgrupos (Ej: Jeans, Blusas, ...)
+		- Producto per se
+	- Ventas:	(Sprint 3) (Entregable final)
+		- Pasarela de pagos
+		- Resumen de las ventas
+		- Comunicación
+
+
+Planificación del Sprint
+	- Qué se va a hacer?  
+	- Cómo se realizará el trabajo elegido?
+
+Roles del equipo SCRUM
+	- Dueño del producto (Define los requerimientos del producto)
+	- SCRUM master (Persona que lidera el equipo de trabajo, brinda formación (por el profesor))
+	- Equipo de desarrolladores (Todo el equipo)
+
+Artefactos de un SCRUM:
+	- Backlog del producto (Cosas por hacer)
+	- Backlog del Sprint (Lista de elementos, historias de usuario o corrección de errores seleccionados
+		por el equipo de desarrollo)
+	- Invremento (Producto final utilizable en el sprint)
+
+Eventos de SCRUM:
+	- Organización del backlog (Busca mantener actualizada la lista de requerimientos del producto)
+	- Planificación del Sprint (Se define el onjetivo del Sprint)
+	- Sprint (Periodo real en el que el equipo de SCRUM trabaja de forma conjunta para finalizar
+		el incremento)
+	- Scrum diario (Reunión de 15 minutos, busca que el eqquipo esté en sintonía y organizado)
+	- Revisión del Sprint (Inspeccionar y evaluar el incremento de Sprint)
+	- Retrospectiva de Sprint (Analiza las experiencias pasadas, centrandose en lo que salió bien 
+		y en lo que se puede mejorar.
+
+¿CÓMO TRABAJAR EN SCRUM?
+	- Usando JIRA:
+		Gestión de proyectos para diferentes equipos de trabajo
+

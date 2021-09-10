@@ -1,0 +1,39 @@
+Clase 4
+
+- Usar git clone <url de repositorio web>
+	Para importar archivos desde el repositorio web
+	a mi repositorio local.
+
+- git pull 
+	Importar contenido al repositorio local.
+	- Se crea una capeta en el repositorio local, se abre el cmd
+	- Se crea conexión con el repositorio web (git init)
+	- git remote add origin <URL repositorio web>
+	- git pull origin master  
+
+- git push
+	Subir contenido al repositorio web.
+	- git add . (Para subir todos los archivos del repos. local al web)
+	- git commit -m "Comentario"
+	- git push origin master
+
+- git remote -v (Para ver las conexiones del repositorio local)
+
+- Origin: URL fuente del proyecto original
+
+- Fork: URL de la copia del proyecto
+	- En el repositorio original se crea el fork (boton fork, para crear copia en mi repositorio web)
+	- Se crea carpeta para mi repositorio local
+	- Se inicia la conexión (git init)
+	- git remote add fork <URL del fork de mi repositorio web>
+	- git remote -v (para ver las conexiones actuales)
+	- Se copia la URL del repositorio criginal para hacer conexión
+	- git remote add origin <URL repositorio original> (Se establece conexión con el reepositorio original)
+	- git remote -v (ver conexiones actuales, se evidencia el fork y el origin)	
+	- git pull origin master
+
+- Ramificaciones: Crear ramificaciones para gestionar las diferentes clases del proyecto
+	- "master"	--> propia del proyecto original como de las copias
+	- "productos"	--> rama local que sólo va a estar en una copia del proyecto particular
+	- "ventas"	--> rama local que sólo va a estar en una copia del proyecto particular
+	

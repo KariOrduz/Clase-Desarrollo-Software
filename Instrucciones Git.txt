@@ -1,0 +1,41 @@
+- Establecer conexión entre repositorio local y web -> SÓLO SE HACE LA PRIMERA VEZ
+1. Crear una carpeta, vacía, en una dirección de interés.
+2. Copiar la dirección de la carpeta
+3. Abrir la terminal (Mac o Linux) o Símbolo del sistema
+4. Accedemos a la dirección
+	cd <dir>
+	cd C:\Users\juand\Documents\Cuero (ejemplo)
+5. Inicializar repositorio
+	git init
+6. Establecer conexión
+	git remote add origin <url>
+	git remote add origin https://github.com/juanda422/Ecommerce-cuero (ejemplo de cuero)
+
+
+- Protocolo de seguridad GitHub (Crear token de autenticación)
+1. Ingresar a nuestra cuenta personal de GitHub.
+2. Haciendo click en el "avatar" (matachito) nos dirigimos a la sección de
+   'Settings'.
+3. Accedemos a 'Developer settings'
+4. Click en 'Personal access tokens'
+5. Crear token especificando duración, para qué es, etc.
+6. Usar token como contraseña para los comandos 'push'
+
+
+- Subida de archivos a repositorio web -> "Push"
+
+1. Copiar la dirección de la carpeta
+2. Abrir la terminal (Mac o Linux) o Símbolo del sistema
+3. Accedemos a la dirección
+	cd <dir>
+	cd C:\Users\juand\Documents\Cuero (ejemplo)
+4. (opcional) Verificar cambios entre local y web
+	git status
+5. Añadir los nuevos archivos
+	git add <nom_archivo>
+	git add .	(Agregar todos los archios)
+6. Documentar el cambio (establecer comentarios) -> documentar cambios en el repositorio
+	git commit -m "comentario..."
+7. Subir los archivos
+	git push origin master
+
