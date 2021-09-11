@@ -6,6 +6,16 @@ Crear pull request
 		- TV
 		- Smartphones
 		- Tablets
+		- Videojuegos
 		- PC	--> Escritorio
 			--> Portatil
+		- Accesorios
 	- Debe desplegarse un listado de opciones y cada opción 
+	
+	
+	
+Class Categorias:
+	def __init__() ----> Atributos:
+				- Nombre (str)
+				- Id (int)
+				- LogoMarca 
