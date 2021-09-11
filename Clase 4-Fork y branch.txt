@@ -36,4 +36,10 @@ Clase 4
 	- "master"	--> propia del proyecto original como de las copias
 	- "productos"	--> rama local que sólo va a estar en una copia del proyecto particular
 	- "ventas"	--> rama local que sólo va a estar en una copia del proyecto particular
-	
+		- git branch (muestra las ramas y marca en verde en cuál está trabajando)
+		- git branch <nombre de la nueva rama> (Para agregar una rama)
+		- git checkout <nombre de la rama> (Para cambiar de rama)
+		- git add . (Para añadir)
+		- git commit -m "comentario para documentar" (obligatorio)
+		- git push fork <nombre de la rama>
+		Se ingresa al repositorio web, se ha generado un pull request 
