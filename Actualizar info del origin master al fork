@@ -1,0 +1,11 @@
+ACTUALIZAR LA COPIA CON INFO DE LA MASTER
+
+origin-master		copia-master
+1.txt			      1.txt
+2.txt			      2.txt
+			
+hola.txt (nuevo)	|  --> git pull origin master (cmd del repositorio local de la copia)
+                  |      branch 'master'
+                  |      git add .
+                  |      git commit -m "comentario"
+                  |      git push copia (en mi caso fork) master
