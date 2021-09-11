@@ -1,0 +1,11 @@
+Sprint 2
+
+Crear pull request 
+	- Crear un branch <categorias>
+	- Crear clase Categorias --> código de directorio de cartegorias (Que productos?)
+		- TV
+		- Smartphones
+		- Tablets
+		- PC	--> Escritorio
+			--> Portatil
+	- Debe desplegarse un listado de opciones y cada opción 
