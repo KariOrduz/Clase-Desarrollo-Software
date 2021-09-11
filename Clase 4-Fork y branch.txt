@@ -1,8 +1,14 @@
 Clase 4
 
-- Usar git clone <url de repositorio web>
+- Usar git clone <url de repositorio web >
 	Para importar archivos desde el repositorio web
 	a mi repositorio local.
+	- Abrir la carpeta donde quiero crear el clon y acceder a cmd
+	- git clone <URL repositorio original>
+	- Cerrar el cmd y acceder al cmd de la carpeta del clon (Repositorio local)
+	- git remote -v (verificar la conexión)
+	- git remote add <URL del fork> (conexión con la copia)
+	- git remote -v (verificar la conexión con el origin y el fork)
 
 - git pull 
 	Importar contenido al repositorio local.
@@ -27,7 +33,7 @@ Clase 4
 	- Se inicia la conexión (git init)
 	- git remote add fork <URL del fork de mi repositorio web>
 	- git remote -v (para ver las conexiones actuales)
-	- Se copia la URL del repositorio criginal para hacer conexión
+	- Se copia la URL del repositorio original para hacer conexión
 	- git remote add origin <URL repositorio original> (Se establece conexión con el reepositorio original)
 	- git remote -v (ver conexiones actuales, se evidencia el fork y el origin)	
 	- git pull origin master
@@ -39,7 +45,12 @@ Clase 4
 		- git branch (muestra las ramas y marca en verde en cuál está trabajando)
 		- git branch <nombre de la nueva rama> (Para agregar una rama)
 		- git checkout <nombre de la rama> (Para cambiar de rama)
+		- git branch (para verificar el cambio de la rama)
 		- git add . (Para añadir)
 		- git commit -m "comentario para documentar" (obligatorio)
 		- git push fork <nombre de la rama>
-		Se ingresa al repositorio web, se ha generado un pull request 
+		- Se ingresa al repositorio web, se ha generado un pull request 
+
+
+
+
