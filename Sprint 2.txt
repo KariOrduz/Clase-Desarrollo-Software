@@ -1,0 +1,21 @@
+Sprint 2
+
+Crear pull request 
+	- Crear un branch <categorias>
+	- Crear clase Categorias --> código de directorio de cartegorias (Que productos?)
+		- TV
+		- Smartphones
+		- Tablets
+		- Videojuegos
+		- PC	--> Escritorio
+			--> Portatil
+		- Accesorios
+	- Debe desplegarse un listado de opciones y cada opción 
+	
+	
+	
+Class Categorias:
+	def __init__() ----> Atributos:
+				- Nombre (str)
+				- Id (int)
+				- LogoMarca 
