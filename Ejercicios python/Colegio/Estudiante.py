@@ -13,5 +13,5 @@ class Estudiante:
 Jose = Estudiante("Jose Miguel", 14, 8)
 Anna = Estudiante("Ana María", 12, 10)
 
-print(Jose.promedio([4, 5, 3]))
-print(Anna.promedio([2, 3, 1]))
+#print(Jose.promedio([4, 5, 3]))
+#print(Anna.promedio([2, 3, 1]))
