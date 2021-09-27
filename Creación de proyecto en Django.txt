@@ -1,0 +1,87 @@
+- django-admin startproject <nombre proyecto>	--> Iniciar proyecto en django
+	-- Se tiene una carpeta base del proyecto	
+	-- Se crea automáticamente una carpeta del archivo base llamada "manage.py"
+
+	#Dentro de la carpeta base
+	- __init__,py	-->Carpeta de ruta del proyecto
+	- asgi.py	-->Configuración del servidor
+	- wasgi.py
+	- setting.py	-->Archivo base de configuración del proyecto (preferiblemente privado)
+	- urls.py	-->Ruta  de espicificación del contenido de una aplicación web.
+	- dominio	-->Nombre de  la aplicación Ej: github.com, mercadolibre.com
+
+- python manage.py runserver  (crea un servidor local)
+	- En el navegador se excribe: localhost:8000
+
+- #Conexión con el CRUD:
+	- python manage.py makemigrations
+	- python manage.py migrate 
+	- localhost:8000/admin (Abre pagina de administración en el navegador)
+
+- CTRL + C (Sale del servidor)
+
+- cls: para limpiar pantalla del terminal (windows)
+
+- Crear usuario y contraseña de administrador:
+	- python manage.py createsuperuser	-usuario
+						-correo
+						-contraseña
+
+------------------------------------------------
+
+SE ABRE EL PROYECTO DESDE LA CARPETA, EN VISUAL (editor de txt de preferencia)
+
+- Desde una terminal:
+	--> Crear app (crea una nueva carpeta): python manage.py starapp <nombre de la app> 
+		Ej: python manage.py Servivios
+		__init__.py	-> Carpeta de ruta del proyecto Python
+		admin.py	-> Permite establecer la configuración de la sección de administración de Django
+		apps.py		-> Brinda informaación sobre la aplicación
+		models.py	-> CRUD del proyecto, es decir, mediante código Python (normalmente clases),
+				   permite la ejecución de código SQL mediante Python.
+				   # CRUD --> Conexión con base de datos
+				   # Manipula bases de datos mediante clases python
+		test.py		-> Desarrollo de pruebas
+		views.py	-> Contiene la lógica del backend
+
+	--> Crear archivo urls.py en la app 'Servicios'
+	
+	--> Agregar 'Servicios' en el INSTALLED_APP de setting.py del proyecto
+
+	-->Crear urls personalizada para 'Servicios' en el archivo urls.py de Servicios
+		from django.urls import path
+		from Servicios.views import vistaEjemplo
+
+		urlspatterns = [
+			path("ejemplo", vistaEjemplo)
+		]
+
+	--> Crear una vista desde views.py de Servicios
+		from django.http import HttpResponse
+		
+		def vistaEjemplo(request):
+			#request -> contiene la info del usuario
+			return HttpResponse("Estas en la aplicación de 'Servicios'")
+
+	--> Añadimos la clase include en urls.py del proyecto
+		from django.urls import path, include
+		urlspatterns = [
+			path('admin/', admin.site.urls),
+			path('servicios/', include('Servicios.urls'))
+		]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

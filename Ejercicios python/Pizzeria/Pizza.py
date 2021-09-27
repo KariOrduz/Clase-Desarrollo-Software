@@ -34,13 +34,13 @@ class Pizza(MasaBase):
 
 
 #Toppings
-tomate = Topping("Tomate", 100, 50)
+tomate = Topping("Tomate", 1000, 50)
 queso = Topping("Queso", 400, 100)
-salami = Topping("Salami", 800, 200)
+salami = Topping("Salami", 800, 100)
 
 #Pizza
 pizzaSalami = Pizza(15, 500, "Integral", "Pizza de Salami Integral", 8000, [tomate, queso, salami])
 
 
-print(pizzaSalami.costoFinal())
+print(pizzaSalami.costo)
 print(pizzaSalami.utilidadBruta())

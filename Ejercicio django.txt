@@ -1,0 +1,319 @@
+#URLS comercio (Principal)
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('servicios/', include('Servicios.urls')),
+    path('checkout/', include('Checkout.urls'))
+]
+
+--------------------------------------------------.
+Incluir clases en settings.py del archivo principal
+
+---------------------------------------
+CREAR APP CHECKOUT	=> pythong manage.py startapp <Checkout>
+
+admin.py
+from django.contrib import admin
+from Checkout.models import *
+
+# Register your models here.
+
+admin.site.register(CarritoCompras)
+admin.site.register(Producto)
+admin.site.register(Item)
+
+
+models.py
+from django.db import models
+from django.db.models.fields.related import ForeignKey
+
+# Create your models here.
+
+class CarritoCompras(models.Model):
+    usuario = models.CharField(max_length=100)  #CharField  -> Información de texto
+    dcto = models.FloatField(default=0)         #FloatField -> Permite almacenar números decimales
+                                                #default    -> Define un valor por defecto (en caso de que no se defina)
+    total=0
+    fecha = models.DateField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.usuario + " - " + str(self.fecha) 
+
+    def total(self):
+        #get                            => permite obtener Un objeto que cumpla una condición especifica
+        #filter                         => permite obtener todos los objetos que cumplan una condicion <= MAS AMPLIO
+        #<nomClase_minuscula>_set.all() => obtiene todos los objetos que tengan conexión con el objeto 'CarritoCompras'
+
+        total = 0
+        #items = self.item_set.all() 
+        items = Item.objects.filter(carrito=self)
+        for item in items:
+            total += item.subtotal()
+        return total
+
+class Producto(models.Model):
+    opciones = {
+        ("Mujer", "M"),
+        ("Hombre", "H")
+    }
+    
+    nombre = models.CharField(max_length=50)
+    precio = models.IntegerField()
+    categoria = models.CharField(choices=opciones,max_length=10)  #CHOICES    -> Tener una estructura que contenga diferentes opciones
+    cod_barras = models.CharField(primary_key=True, max_length=100)
+
+    def __str__(self):
+        return self.nombre 
+
+class Item (models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    carrito = models.ForeignKey(CarritoCompras, on_delete=models.CASCADE)
+    cantidad = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.producto.nombre
+
+    def subtotal(self):
+        #subtoal = precioProducto * cantidad
+        return self.producto.precio*self.cantidad
+
+"""SQL  -> Cuando se hacen cambios en models.py
+python manage.py makemigrations
+python manage.py migrate
+
+"""
+
+"""SHELL
+
+from Checkout.models import * 
+
+#CREACION DE PRODUCTOS 1 SOLA VEZ
+Jeans = Producto.objects.create(nombre="Jeans", precio=100000, categoria="M", cod_barras="123") 
+
+Camisa = Producto.objects.create(nombre="Camisa", precio=50000, categoria="H", cod_barras="102")
+
+#DESDE LA SEGUNDA VEZ EN ADELANTE:
+
+Jeans = Producto.objects.get(nombre="Jeans")
+Camisa = Prosucto.objects.get(nombre="Camisa")
+
+______________________________________________
+
+#CREACION CARRITO 1 SOLA VEZ
+Car1 = CarritoCompras.objects.create(usuario="1", dcto=0.0)
+
+#DESDE LA SEGUNDA VEZ EN ADELANTE (OBTENER OBJETOS DEL CARRITO)
+Car1 = Productos.objects.get(usuarios="1")
+
+______________________________________________________
+
+#ITEMS (SOLO LA PRIMERA VEZ):
+item = Item.objects.create(producto=Jeans,carrito=Car1, cantidad=2) 
+
+#desde la segunda vez en adelante (Obtener objetos de CarritoCompras)
+item = Item.objects.get(id=1)
+
+item.subtotal()
+
+"""
+
+urls.py	=> crearlo
+#URLS del Checkout (locales)
+
+from django.urls import path
+from django.urls.resolvers import URLPattern
+
+urlpatterns = [
+    
+]
+
+-------------------------------------------------------------------------------------
+
+CREAR APP SERVICIOS
+
+admin.py
+from Servicios.models import *
+from django.contrib import admin
+
+# Register your models here.
+admin.site.register(Categoria)
+admin.site.register(Genero)
+admin.site.register(Serie)
+
+
+models.py
+from os import truncate
+from django.db import models
+
+# Create your models here.
+
+#CLASE ABSTRACTA (contiene información que de repite en diferentes clases)
+class FormatoGeneral(models.Model):
+    nombre = models.CharField(max_length=200)
+    numLikes = models.IntegerField(default=0)
+    numVistas = models.IntegerField(default=0)
+
+    class Meta:     # Permite "flexibilizar o configurar, el comportamiento de una clase"
+        abstract = True
+        #Se utiliza como un formato para estipular 
+        #los metodos y atribustos en una relacion de herencia
+
+
+    def __str__(self):
+        return self.nombre
+
+    def like(self):
+        self.numLikes += 1
+        self.save()
+
+    def dislike(self):
+        self.numLikes -= 1
+        self.save()
+
+    def nuevaVista(self):
+        #Añadir una nueva vista por parte de un usuario
+        self.numVistas += 1
+        self.save() # =>Guardar la información actualizada
+
+#FIN CLASE ABSTRACTA
+
+class Categoria(FormatoGeneral):
+    mayoriaEdad = models.BooleanField(default=False)
+
+   
+class Genero(FormatoGeneral):
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    
+    def nuevaVista(self):
+        #Polimorfismo dinámico => se produce en relaciones de herencia
+        #   Sobreescribir el contenido del método 'nuevaVista de la clase padre
+
+        #Recuperar la funcionalidad de la clase padre
+        super().nuevaVista()
+
+        #Actualiza las vistas de la categoría
+        self.categoria.nuevaVista()
+
+    
+class Serie(FormatoGeneral):
+    generos = models.ManyToManyField(Genero)  # Especifica multiples relaciones de tipo 'Genero'
+    
+    def like(self):
+        super().like() #Añade un nuevo like a la serie
+
+        #Añadir likes a los géneros
+
+
+class Pelicula(models.Model):
+    pass
+
+class Temporada(models.Model):
+    pass
+
+class Capitulo(models.Model):
+    pass
+
+"""SHELL -> python manage.py shell
+
+EcommerceTec
+
+from Servicios.models import *
+
+suspenso.categoria.nuevaVista()     => Agrega una nueva vista a la categoria 'Adultos(+18)'
+
+suspenso.nuevaVista()               => Agrega una nueva vista al genero 'Suspenso'
+                                    Al agregarla, automáticamente añade una vista a la categoría a la que pertenece
+                                
+"""
+
+
+
+#**********************************************
+#************PRUEBA*************
+"""
+    BEAT-E -> proyecto misical
+
+    Músico - albumes - canciones
+
+    models.Model -> clase Padre con la cual se establece la conexión CRUD => tabla SQL
+
+    models.Charfield -> campo de texto de tipo SQL
+
+    null=True -> permite argumentos de tipo 'NULL'
+
+    blankTrue -> permitir argumentos 'vacíos'
+
+    ForeignKey -> establecer conexión entre tablas SQL
+
+    models.TimeField() -> Almacenamiento de formato de tiempo
+
+    on_delete=models.CASCADE -> eliminar TODOS los albumes que le correspondan al músico que se haya eliminado
+
+"""
+
+
+
+
+"""SQL
+
+CREATE TABLE Servicios_Musico(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(100) NOT NULL
+
+);
+
+"""
+
+
+
+"""SHELL -> Herramienta que permite ejecutar código
+            Python del proyecto Django
+            python manage.py shell
+
+            podemos:  SISTEMA DE DEPURACIÓN DE CÓDIGO
+                1. Probar código CRUD
+                2. Verificar la lógica de un algorítmo
+from Servicios.models import *
+
+#OBTENER INFORMACIÓN
+musicos = Musico.objects.all() -> obtener TODOS los registros de la tabla 'Musico' en base de datos 
+Juanes = Musico.objects.get(nombreArtistico="Juanes")
+        #get -> esperamos como respuesta UN SOLO OBJETO
+
+albumesJuanes = Album.objects.filter(musico=Juanes)
+        #filter -> esperamos posiblemente múltiples objetos
+
+#CREAR UN NUEVO MÚSICO
+Shakira = Musico.objects.create(nombreArtistico="Shakira", nombre="Shakira")
+
+
+#CREAR ALBUM
+PiesDescalzos = Album.objects.create(musico=Shakira, nombre="Pies Descalzos")
+
+"""
+
+
+urls.py	=> crearlo
+#URLS de Servicios
+from django.urls import path
+from Servicios.views import vistaEjemplo
+
+urlpatterns = [
+    path("ejemplo", vistaEjemplo)
+]
+
+
+
+views.py
+from django.shortcuts import render
+
+from django.http import HttpResponse
+
+# Create your views here.
+
+def vistaEjemplo(request):
+    #request -> contiene la info del usuario
+	return HttpResponse("Estas en la aplicación de 'Servicios'")

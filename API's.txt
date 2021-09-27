@@ -1,0 +1,32 @@
+		API's
+Creación o la lógica de las API's, es decir, la forma en como se comunica el backend 
+y el Frontend.
+
+APIView:
+	Se trata de una herramienta que emplea la logica de las peticiones de
+	usuario.
+	=> GET:	   Petición de usuario en donde el usuario solicita información a la
+		   aplicación web.
+	=> POST:   Petición en donde el usuario envía información a la aplicación web.
+		   (Formularios)
+	=> PUT:	   Petición en donde el usuario solicira actualizaar informacipon en
+		   base de datos.
+	=> PATCH:  Se cambia parte de la información en una tabla SQL
+	=> DELETE: Borra un registro en base de datos.
+
+Ventajas:	
+	* Permite controlar, con precisión, la lógica detrás de las API's.
+	* Permite usar otras API's.
+	* Permite trabajar con archivos locales.
+
+ViewSets:
+	=> List:     Listar el contenido de base de datos.
+	=> destroy:  Eliminar datos.
+	=> create:   Creación de datos
+	=> retrieve: Obtiene registros individuales
+	=> update:   Actualiza información
+	=> partial_update: actualiza información parcial
+
+Ventajas:
+	* Permite manipulación básica de bases de datos.
+	* Emplea comandos cortos y sencillos ára la creación rápida de API's.
